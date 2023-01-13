@@ -7,10 +7,14 @@
 
 const axios = require('axios'),
 	isAbsoluteUrl = require('is-absolute-url'),
-	isValidPath = require('is-valid-path');
+	isValidPath = require('is-valid-path'),
+    path = require('path'),
+    fs = require('fs');
 
 async function to_buffer(dataOrPath) {
 	try {
+
+        // if is already a buffer
 		if (Buffer.isBuffer(dataOrPath)) {
 			return dataOrPath;
 		}
@@ -28,7 +32,7 @@ async function to_buffer(dataOrPath) {
 			return data;
 		}
 
-		// check if is a path
+		// if is a path
 		if (isValidPath(dataOrPath)) {
 			let resolvedPath = path.resolve(dataOrPath);
 
