@@ -36,7 +36,7 @@ async function to_buffer(dataOrPath) {
 		if (isValidPath(dataOrPath)) {
 			let resolvedPath = path.resolve(dataOrPath);
 
-			if (fs.existsSync(resolvedPath)) {
+			if (fs.existsSync(resolvedPath) && fs.statSync(resolvedPath).isFile()) {
 				return fs.readFileSync(resolvedPath);
 			}
 		}
