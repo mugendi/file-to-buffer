@@ -38,5 +38,4 @@ Because we have loaded the same `.gitignore` file, and same file content, the lo
 { fileBuffer: <Buffer 6e 6f 64 65 5f 6d 6f 64 75 6c 65 73>, size: 12 }
 { urlBuffer: <Buffer 6e 6f 64 65 5f 6d 6f 64 75 6c 65 73>, size: 12 }
 { strBuffer: <Buffer 6e 6f 64 65 5f 6d 6f 64 75 6c 65 73>, size: 12 }
-
 ```
