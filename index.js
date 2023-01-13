@@ -7,20 +7,16 @@
 
 const axios = require('axios'),
 	isAbsoluteUrl = require('is-absolute-url'),
-	isValidPath = require('is-valid-path'),
-	logger = require('debug-symbols')('file-to-buffer');
+	isValidPath = require('is-valid-path');
 
 async function to_buffer(dataOrPath) {
 	try {
 		if (Buffer.isBuffer(dataOrPath)) {
-			logger.debug('Upload is a Buffer');
 			return dataOrPath;
 		}
 
 		// if url
 		if (isAbsoluteUrl(dataOrPath)) {
-			logger.debug('Upload is a URL');
-
 			let { data } = await axios
 				.get(dataOrPath, {
 					responseType: 'arraybuffer',
@@ -37,9 +33,13 @@ async function to_buffer(dataOrPath) {
 			let resolvedPath = path.resolve(dataOrPath);
 
 			if (fs.existsSync(resolvedPath)) {
-				logger.debug('Upload is a File');
 				return fs.readFileSync(resolvedPath);
 			}
+		}
+
+        // if is a string
+		if (typeof dataOrPath == 'string') {
+			return Buffer.from(dataOrPath);
 		}
 
 		// if we get here, then we have an error
@@ -49,5 +49,4 @@ async function to_buffer(dataOrPath) {
 	}
 }
 
-
-module.exports = to_buffer
+module.exports = to_buffer;
