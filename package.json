@@ -1,6 +1,6 @@
 {
   "name": "file-to-buffer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Take File, URL or String and return a buffer",
   "main": "index.js",
   "scripts": {
